@@ -1,92 +1,192 @@
+/* Updated Color Variables */
+:root {
+    --primary-color: #6B46C1;
+    --secondary-color: #F6AD55;
+    --text-color: #2D3748;
+    --light-bg: #F7FAFC;
+    --dark-bg: #2D3748;
+    --white: #FFFFFF;
+    --hover-color: #F6AD55;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: #fdfdfd;
-  color: #333;
+    background: var(--light-bg);
+    color: var(--text-color);
 }
 
-/* NAVBAR */
+/* Updated Navbar Styles */
 nav {
-  background-color: #9c3ea8;
-  padding: 12px;
+    background-color: var(--primary-color);
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px 0;
+    transition: all 0.3s ease;
 }
 
 #navbar {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
-#navbar li a i {
-  font-size: 1.2rem; /* Adjust icon size */
-  color: #edeff2; /* dark gray */
-  transition: color 0.3s ease;
-}                   
-
-#navbar li {
-  display: flex;   /* Ensures icon and text are aligned */
-  align-items: center; /* Vertically centers icon and text */
-  margin-right: 20px; /* Optional: space between nav items */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
 }
 
 #navbar li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 16px;
-  padding: 6px 12px;
-  display: flex; /* Aligns icon and text inside the link */
-  align-items: center; /* Vertically centers icon and text */
-  gap: 8px; /* Optional: space between icon and text */
-}
-
-nav ul li a {
-    display: flex;
-    align-items: center;
+    color: var(--white);
     text-decoration: none;
-    color: inherit;
-    gap: 8px;
-    line-height: 1; /* Ensures consistent line height */
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-nav ul li a i {
-    font-size: 1em; /* Adjust as needed */
-    vertical-align: middle; /* Aligns icon vertically */
-    line-height: 1; /* Ensures icon is centered */
-    display: inline-block;
+#navbar li a:hover {
+    background-color: var(--hover-color);
+    color: var(--dark-bg);
 }
 
 .social-icons {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
 }
 
 .social-icons a {
-
-  font-size: 1.6rem;
-  margin-right: 15px;
- 
-    display: inline-block;
-
-  color: #edeff2; /* dark gray */
-  transition: color 0.3s ease;
+    color: var(--white);
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #f97316; /* orange highlight on hover */
+    color: var(--hover-color);
 }
 
-#navbar li a:hover {
-  background-color: #f97316;
-  border-radius: 5px;
+/* Mobile Navigation Styles */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    #navbar {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: 20px;
+        transition: left 0.3s ease;
+        gap: 15px;
+        overflow-y: auto;
+    }
+
+    #navbar.active {
+        left: 0;
+    }
+
+    #navbar li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #navbar li a {
+        display: block;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .social-icons {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* Add padding to body when menu is open to prevent scrolling */
+    body.menu-open {
+        overflow: hidden;
+    }
 }
+
+/* Update other color references in the existing CSS */
+.intro-text h1 {
+    color: var(--primary-color);
+}
+
+.intro-text h1 span {
+    color: var(--secondary-color);
+}
+
+.section-title {
+    color: var(--primary-color);
+}
+
+.project-card {
+    border-left: 6px solid var(--secondary-color);
+}
+
+.contact-section {
+    background-color: var(--primary-color);
+}
+
+.contact-details a {
+    color: var(--secondary-color);
+}
+
 .skills-section {
   background-color: #f3f4f6;
   text-align: center;
@@ -455,5 +555,212 @@ nav ul li a i {
   margin-top: 10px;
   font-style: italic;
   color: #d1d5db;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    /* Navbar */
+    #navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px 0;
+    }
+
+    #navbar li {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #navbar li a {
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+
+    /* Hero Section */
+    .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 15px;
+    }
+
+    .intro-text {
+        max-width: 100%;
+    }
+
+    .intro-text h1 {
+        font-size: 2rem;
+    }
+
+    .intro-text h2 {
+        font-size: 1.2rem;
+    }
+
+    #image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Skills Section */
+    .skills-slider {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .skill-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+
+    /* Hire Section */
+    .hire-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hire-image {
+        margin-bottom: 20px;
+    }
+
+    .hire-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    /* Contact Section */
+    .contact-container {
+        padding: 20px 15px;
+    }
+
+    .contact-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact-details p {
+        text-align: center;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media screen and (max-width: 480px) {
+    .intro-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .intro-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .project-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Fix for the skills section on mobile */
+@media screen and (max-width: 768px) {
+    .skills-section {
+        padding: 20px 10px;
+    }
+
+    .skills-slider {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        overflow-x: visible;
+    }
+}
+
+/* Responsive Image Handling */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#image {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+#image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #f6f3f1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hire-image {
+    flex: 1;
+    max-width: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hire-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Update media queries for better image handling */
+@media screen and (max-width: 768px) {
+    #image {
+        max-width: 200px;
+        margin: 20px auto;
+    }
+
+    .hire-image {
+        max-width: 100%;
+        height: 300px;
+    }
+
+    .hire-image img {
+        height: 100%;
+        object-position: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #image {
+        max-width: 180px;
+    }
+
+    .hire-image {
+        height: 250px;
+    }
+}
+
+.container,
+.hire-section,
+.projects-section,
+.contact-section {
+    margin-top: 80px;
 }
 
